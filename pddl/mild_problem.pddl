@@ -4,7 +4,7 @@
     rob1 - robot
     vic1 - victim
     start injury-site hospital - location
-    monor-bleed - diagnosis
+    minor-bleed - diagnosis
     bandage - treatment
     moderate stable - health-level
   )
