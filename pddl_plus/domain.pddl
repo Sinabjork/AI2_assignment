@@ -161,4 +161,5 @@
       (at ?r ?to) (victim-at ?v ?to) (evacuated ?v)
     )
   )
+
 )

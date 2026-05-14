@@ -1,5 +1,5 @@
-(define (problem mild-injury) 
-    (:domain sar-process)
+(define (problem critical-injury) 
+    (:domain sar-plus)
     (:objects 
         rob1 - robot
         vic1 - victim
