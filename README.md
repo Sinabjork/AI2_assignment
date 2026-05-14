@@ -62,6 +62,16 @@ transport - transporting the victim.
 ```
 The transport action has not been modeled with any time-units as the action does not affect the health-decay because the victim is stabilized.
 
+The planning goal is defined as:
+
+```lisp
+(evacuated vic1)
+(not (health-failure vic1))
+```
+
+A valid plan therefore requires the victim to be evacuated without entering a health-failure state (health ≤ 0).  
+The evacuation condition additionally prevents the planner from generating an empty or instantaneous plan.
+
 **Problem 1 - Mild Injury**
 
 For the first problem the injury is the same as for the mild injury with PDDL:
@@ -98,6 +108,40 @@ t = 15
 </tr>
 </table>
 
+Each of the images correspond to the actions at different time-intervals. For the case of the mild injury one can observe that all the steps are included, all the way to transporting the victim to the hospital. The planner is thus able to find a viable plan. 
+
+**Problem 2 - Critical Injury**
+For the critical problem the injury is described as:
+```text
+Critical Injury - Major Bleed 
+Treatment - Tourniquet
+```
+Now the parameters for inital health has been set to:  
+```text
+health = 90  
+worsening-rate = 6
+```
+This indicates that the victim is similarily to the mild injury, at good health initially, but this value is rapidly decreasing. This leads to the planner output being:
+
+![pddl_critical](Plans/Pddl_plus_critical.png)
+
+This is an empty plan, indicating that the planner could not find a plan to reach the goal. 
+
+
+The following table compares the **Mild (90-1)** and **Critical (90-6)** scenarios. It shows why the planner succeeds in one and fails the other based on the **16-second** minimum intervention time.
+
+| Metric | Mild Case (90-1) | Critical Case (90-6) |
+| --- | --- | --- |
+| **Initial Health** | 90 | 90 |
+| **Worsening Rate** | -1 / sec | -6 / sec |
+| **Survival Time** | **90.0s** | **15.0s** |
+| **Travel Time** | 10.0s | 10.0s |
+| **Diagnosis Penalty** | 1.0s | 6.0s |
+| **Stabilization Time** | 5.0s | 5.0s |
+| **Total Time Needed** | **16.0s** | **16.0s** |
+| **Result** | **Success** (Health: 74) | **Failure** (Health: -6) |
+
+For this second **critical** case, the robot requires 16 seconds to complete stabilization, and the `victim-health-failure` event triggers first. Thus the robot is not able to `stabilize`, nor reach the plan goal. 
 
 ## DISCUSSION
 
