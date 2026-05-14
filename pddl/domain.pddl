@@ -1,17 +1,19 @@
 (define (domain search-and-rescue)
-  (:requirements :strips :typing)
-  (:types 
-    robot location victim diagnosis treatment health-level
+  (:requirements 
+    :strips 
+    :typing
   )
 
+  ; TYPES
+  (:types robot location victim diagnosis treatment health-level)
+
+  ; PREDICATES
   (:predicates
-    ; Locations
     (at ?r - robot ?l - location)
     (victim-at ?v - victim ?l - location)
     (connected ?from - location ?to - location)
     (evacuation-point ?l - location)
     
-    ; Health & Treatment
     (victim-health ?v - victim ?h - health-level)
     (next-health-level ?current - health-level ?next - health-level)
     (is-stabilized ?h - health-level)
@@ -21,6 +23,7 @@
     (diagnosed ?v - victim)
   )
 
+  ; MOVEMENT
   (:action move
     :parameters 
         (?r - robot ?from - location ?to - location)
@@ -34,6 +37,7 @@
         )
   )
 
+  ; DIAGNOSE
   (:action diagnose
     :parameters (?r - robot ?v - victim ?l - location ?d - diagnosis)
     :precondition (and 
@@ -44,6 +48,7 @@
     :effect (and (diagnosed ?v))
   )
 
+  ; STABILIZE
   (:action stabilize
     :parameters (?r - robot ?v - victim ?l - location ?d - diagnosis ?t - treatment ?current - health-level ?better - health-level)
     :precondition (and 
@@ -61,6 +66,7 @@
     )
   )
 
+  ; TRANSPORT
   (:action transport
     :parameters (?r - robot ?v - victim ?from - location ?to - location ?h - health-level)
     :precondition (and 

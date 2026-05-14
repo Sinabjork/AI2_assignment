@@ -9,19 +9,21 @@
     moderate stable - health-level
   )
   (:init
+    ; Location
     (at rob1 start)
     (victim-at vic1 injury-site)
     (evacuation-point hospital)
     (connected start injury-site)
     (connected injury-site hospital)
 
+    ; Victim Medical Status
     (has-diagnosis vic1 minor-bleed)
     (needs-treatment minor-bleed bandage)
-    
-    ; Health state
     (victim-health vic1 moderate)
     (next-health-level moderate stable)
     (is-stabilized stable)
   )
-  (:goal (victim-at vic1 hospital))
+  (:goal 
+    (victim-at vic1 hospital)
+  )
 )

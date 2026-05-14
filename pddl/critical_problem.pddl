@@ -4,21 +4,21 @@
     rob1 - robot
     vic1 - victim
     start injury-site hospital - location
-    airway-blocked - diagnosis
-    airway-treatment - treatment
+    major-bleed - diagnosis
+    tourniquet - treatment
     critical serious moderate stable - health-level
   )
   (:init
+    ; Location
     (at rob1 start)
     (victim-at vic1 injury-site)
     (evacuation-point hospital)
     (connected start injury-site)
     (connected injury-site hospital)
 
-    (has-diagnosis vic1 airway-blocked)
-    (needs-treatment airway-blocked airway-treatment)
-
-    ; Health state
+    ; Victim Medical Status
+    (has-diagnosis vic1 major-bleed)
+    (needs-treatment major-bleed tourniquet)
     (victim-health vic1 critical)
     (next-health-level critical serious)
     (next-health-level serious moderate)
