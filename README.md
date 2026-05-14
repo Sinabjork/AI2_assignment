@@ -1,7 +1,7 @@
 # Assignment D4-V7: Search and Rescue – Victim Health and Treatment Constraints
 The following assignment will look at how to plan actions for a robot to treat victims depending on the severity and diagnosis of their injury. After stabilizing the victim, the robot should then transport the victim from the location of the injury.   
 
-Planning Domain Definition Language will be used to do create plans for this procedure. Initially, basic PDDL will be applied and then the task is expanded through the use of PDDL+. 
+Planning Domain Definition Language is used to create plans for this procedure. Initially, basic PDDL will be applied and then the task is expanded through the use of PDDL+. 
 
 ## Initializations
 Certain parameters are set initially when trying to plan. 
@@ -37,7 +37,7 @@ transport - robot transporting the victim
 **RESULTS**  
 After running the LAMA-FIRST planner on the mild injury the following plan was outputted:  
 ![pddl_mild](Plans/Pddl_Mild.png)
-As the image depicts the robot uses 4 steps to get to the victim, diagnoze them, stabilize them and then transport them to the hospital.   
+As the image depicts the robot uses 4 steps to get to the victim, diagnose them, stabilize them and then transport them to the hospital.   
 
 The plan for the critical injury:
 ![pddl_critical](Plans/Pddl_Critical.png)
@@ -84,7 +84,7 @@ Additionally the parameters for inital health has been set:
 health = 90  
 worsening-rate = 1
 ```
-This indicates that the victim is at good health, with a slight deteriation due to the minor bleed. 
+This indicates that the victim is at good health, with a slight deterioration due to the minor bleed. 
 
 The following plan was given to treat the victim:
 
@@ -121,7 +121,7 @@ Now the parameters for inital health has been set to:
 health = 90  
 worsening-rate = 6
 ```
-This indicates that the victim is similarily to the mild injury, at good health initially, but this value is rapidly decreasing. This leads to the planner output being:
+This indicates that the victim is similarly to the mild injury, at good health initially, but this value is rapidly decreasing. This leads to the planner output being:
 
 ![pddl_critical](Plans/Pddl_plus_critical.png)
 
