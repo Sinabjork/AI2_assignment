@@ -145,8 +145,14 @@ For this second **critical** case, the robot requires 16 seconds to complete sta
 
 ## DISCUSSION
 
-**LIMITATIONS**
+**Modelling Biological Processes**  
+A key element of this assignment was modelling the health of a victim. While biological processes are highly complex and influenced by many factors, the use of PDDL and PDDL+ requires significant simplifications.
 
-diagnose is given directly in init
+In the classical PDDL model, this simplification is evident in the representation of health using discrete levels: `critical` -> `serious` -> `moderate` -> `stable`. This made the planning problem easier to solve, but it did not account for continuously declining health or the possibility that the robot might fail to stabilize the victim in time.
 
-simplified by using actions as well as processes for PDDL+
+The PDDL+ model made the representation more realistic by introducing a time-dependent health variable. This allowed the planner to reason about continuous health deterioration over time, while also representing health more accurately as a numeric value rather than only four states. Nevertheless, the biological process remains simplified, since the model assumes a constant deterioration rate and that the diagnosis is already known in the initial state.
+
+**Planning Under Time-Critical Conditions**  
+When comparing planning with PDDL and PDDL+ the effect of thetime-constraints becomes evident. For the PDDL plan, time is entirely excluded as a factor, and consequently there always exists a feasible plan. 
+
+By introducing the time-dependent `health-decay`-process with PDDL+ one constrains the planner. Additionally to performing all required actions/processes, the planner has to find a way to do this within a given time-frame depending on the victims health status. In the event of `victim-health-failure`(death) there is no longer a valid plan for saving that victim. This becomes evident in the "critical case" were the robot was unable to stabilize the victim before this occured. Again, using PDDL+ opens up the opportunity to create a much more realistic scenario and a less optimistic planner. 
