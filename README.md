@@ -128,7 +128,7 @@ This indicates that the victim is similarly to the mild injury, at good health i
 This is an empty plan, indicating that the planner could not find a plan to reach the goal. 
 
 
-The following table compares the **Mild (90-1)** and **Critical (90-6)** scenarios. It shows why the planner succeeds in one and fails the other based on the **16-second** minimum intervention time.
+The following table compares the **Mild (90-1)** and **Critical (90-6)** scenarios. It shows why the planner succeeds in one and fails the other based on the **16-second** intervention time.
 
 | Metric | Mild Case (90-1) | Critical Case (90-6) |
 | --- | --- | --- |
