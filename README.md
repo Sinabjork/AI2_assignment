@@ -45,7 +45,7 @@ It becomes clear that a more severe injury requires more steps of stabilization.
 
 Although the severity of the injury is large, the planner is able to find a solution which brings the victim safely to the hospital. However, this representation might not always be entirely realistic. This is when the expansion to PDDL+ can be helpful.
 
-## PDDL +
+## PDDL+
 When expanding to PDDL+ the health of the victim is no longer represented by discrete values, but as a continuous value. As time passes the victim's health will decrease and they are therefore dependent on the time it takes for the robot to reach the victim and stabilize them.   
 
 There are therefore some new values added to this part of the assignment - the time each action/process takes. The **processes** of the task are:
@@ -57,7 +57,7 @@ stabilization-process - takes 5 time units to stabilize victim
 
 There are also actions as for the PDDL case:
 ```text
-diagnose  - happens simultaneously as stabilizing and takes 1 time unit.  
+diagnose  - performed before stabilization and introduces an additional health penalty.      
 transport - transporting the victim. 
 ```
 The transport action has not been modeled with any time-units as the action does not affect the health-decay because the victim is stabilized.
@@ -153,6 +153,6 @@ In the classical PDDL model, this simplification is evident in the representatio
 The PDDL+ model made the representation more realistic by introducing a time-dependent health variable. This allowed the planner to reason about continuous health deterioration over time, while also representing health more accurately as a numeric value rather than only four states. Nevertheless, the biological process remains simplified, since the model assumes a constant deterioration rate and that the diagnosis is already known in the initial state.
 
 **Planning Under Time-Critical Conditions**  
-When comparing planning with PDDL and PDDL+ the effect of thetime-constraints becomes evident. For the PDDL plan, time is entirely excluded as a factor, and consequently there always exists a feasible plan. 
+When comparing planning with PDDL and PDDL+ the effect of the time-constraints becomes evident. For the PDDL plan, time is entirely excluded as a factor, and consequently the planner is always able to find a feasible plan independent on the severity of the victims injury. 
 
-By introducing the time-dependent `health-decay`-process with PDDL+ one constrains the planner. Additionally to performing all required actions/processes, the planner has to find a way to do this within a given time-frame depending on the victims health status. In the event of `victim-health-failure`(death) there is no longer a valid plan for saving that victim. This becomes evident in the "critical case" were the robot was unable to stabilize the victim before this occured. Again, using PDDL+ opens up the opportunity to create a much more realistic scenario and a less optimistic planner. 
+By introducing the time-dependent `health-decay`-process with PDDL+ one constrains the planner. Additionally to performing all required actions/processes, the planner has to find a way to do this within a given time-frame depending on the victims health status. In the event of `victim-health-failure`(death) there is no longer a valid plan for saving that victim. This becomes evident in the "critical case" were the robot was unable to stabilize the victim before this occurred. Again, using PDDL+ therefore enables a more realistic rescue scenario and a less optimistic planning model.
